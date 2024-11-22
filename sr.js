@@ -1,29 +1,31 @@
-// 在文件开头添加音频自动播放的代码
+// 在文件开头修改音频自动播放的代码
 window.addEventListener('load', function() {
     // 获取音频元素
     const birthdayAudio = document.getElementById('birthday-audio');
     
-    // 尝试播放音频
-    const playAudio = async () => {
-        try {
-            await birthdayAudio.play();
-        } catch (err) {
-            console.log('自动播放失败，等待用户交互:', err);
-            // 添加点击事件监听器来播放音频
-            document.addEventListener('click', function playOnClick() {
-                birthdayAudio.play();
-                document.removeEventListener('click', playOnClick);
-            }, { once: true });
-        }
-    };
-    
-    playAudio();
-    
-    // 确保音频循环播放
-    birthdayAudio.addEventListener('ended', function() {
-        birthdayAudio.currentTime = 0;
-        birthdayAudio.play();
-    });
+    // 弹出提示框询问是否播放音乐
+    if (confirm('是否播放生日快乐歌？')) {
+        const playAudio = async () => {
+            try {
+                await birthdayAudio.play();
+            } catch (err) {
+                console.log('播放失败:', err);
+                // 如果自动播放失败，添加点击事件监听器
+                document.addEventListener('click', function playOnClick() {
+                    birthdayAudio.play();
+                    document.removeEventListener('click', playOnClick);
+                }, { once: true });
+            }
+        };
+        
+        playAudio();
+        
+        // 确保音频循环播放
+        birthdayAudio.addEventListener('ended', function() {
+            birthdayAudio.currentTime = 0;
+            birthdayAudio.play();
+        });
+    }
 });
 
 function showGiftMessage() {
