@@ -1,0 +1,172 @@
+body {
+    background-image: url('https://images.unsplash.com/photo-1464692805480-a69dfaafdb0d?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: 1;
+}
+
+h1, #dancer, #gift, #message-box, #hint-text, #button-container, .emoji, .barrage, .snowflake, .special-emoji {
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    position: absolute;
+    width: 100%;
+    top: 5%;
+    margin: 0;
+    z-index: 100;
+}
+
+#dancer {
+    width: 200px;
+    animation: dance 1s infinite;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+}
+
+@keyframes dance {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -20px); }
+}
+
+.emoji {
+    position: absolute;
+    font-size: 24px;
+    pointer-events: none;
+    opacity: 0;
+    animation: fadeInOut 0.5s forwards;
+    z-index: 200;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.barrage {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 1.5em;
+    animation: move 10s linear infinite;
+    z-index: 150;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: #fff;
+    font-size: 1.5em;
+    pointer-events: none;
+    animation: fall linear infinite;
+    z-index: 75;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+#gift {
+    cursor: pointer;
+    width: 100px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+}
+
+#hint-text {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2em;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 100;
+}
+
+#button-container {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 100;
+}
+
+.gift-button {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #ff69b4;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.gift-button:hover {
+    background-color: #ff1493;
+}
+
+.special-emoji {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 96px;
+    pointer-events: none;
+    z-index: 1000;
+    animation: fadeInOut 1s forwards;
+}
+
+#message-box {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    font-size: 1.2em;
+    text-align: center;
+    z-index: 100;
+    margin-bottom: 20px;
+}
